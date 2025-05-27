@@ -6,19 +6,19 @@
   <title>the import G5</title>
   <style>
     body {
-      background: linear-gradient(to right, #e0e0e0, #ffffff);
+      background: linear-gradient(135deg, #dfe9f3 0%, #ffffff 100%);
       font-family: 'Segoe UI', sans-serif;
       margin: 0;
       padding: 0;
-      color: #333;
+      color: #222;
     }
     .container {
       max-width: 600px;
       margin: 40px auto;
       padding: 20px;
-      background: #f9f9f9;
+      background: #ffffff;
       border-radius: 12px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      box-shadow: 0 10px 25px rgba(0, 123, 255, 0.2);
     }
     h1 {
       font-size: 3em;
@@ -28,9 +28,9 @@
       margin-bottom: 20px;
     }
     .mensaje {
-      background-color: #fff3cd;
+      background-color: #e2f0fb;
       padding: 15px;
-      border-left: 6px solid #ffc107;
+      border-left: 6px solid #007bff;
       margin-bottom: 20px;
       border-radius: 6px;
     }
@@ -42,13 +42,18 @@
       background: #fff;
       padding: 12px;
       margin: 6px 0;
-      border: 1px solid #ccc;
+      border: 1px solid #007bff;
       border-radius: 6px;
       cursor: pointer;
       transition: background 0.3s;
     }
     .opcion:hover {
       background: #e6f7ff;
+    }
+    .opcion.selected {
+      background-color: #007bff;
+      color: white;
+      border-color: #0056b3;
     }
     .formulario {
       margin-top: 20px;
@@ -67,7 +72,7 @@
     }
     button {
       margin-top: 20px;
-      background: #28a745;
+      background: #007bff;
       color: white;
       padding: 12px;
       width: 100%;
@@ -77,13 +82,13 @@
       cursor: pointer;
     }
     button:hover {
-      background: #218838;
+      background: #0069d9;
     }
     .resultado {
       margin-top: 20px;
       padding: 15px;
-      background: #d1ecf1;
-      border-left: 6px solid #0c5460;
+      background: #e6f7ff;
+      border-left: 6px solid #007bff;
       border-radius: 6px;
       display: none;
     }
@@ -121,14 +126,16 @@
     Para que el sistema cargue correctamente la transferencia a tu cuenta.
   </div>
 
-  <div class="opciones">
-    <div class="opcion">💸 43.000$ = 250.000$</div>
-    <div class="opcion">💸 55.000$ = 350.000$</div>
-    <div class="opcion">💸 67.000$ = 550.000$</div>
-    <div class="opcion">💸 73.000$ = 650.000$</div>
-    <div class="opcion">💸 85.000$ = 800.000$</div>
-    <div class="opcion">💸 100.000$ = 1.000.000$</div>
+  <div class="opciones" id="opciones">
+    <div class="opcion" data-value="43.000$ = 250.000$">💸 43.000$ = 250.000$</div>
+    <div class="opcion" data-value="55.000$ = 350.000$">💸 55.000$ = 350.000$</div>
+    <div class="opcion" data-value="67.000$ = 550.000$">💸 67.000$ = 550.000$</div>
+    <div class="opcion" data-value="73.000$ = 650.000$">💸 73.000$ = 650.000$</div>
+    <div class="opcion" data-value="85.000$ = 800.000$">💸 85.000$ = 800.000$</div>
+    <div class="opcion" data-value="100.000$ = 1.000.000$">💸 100.000$ = 1.000.000$</div>
   </div>
+
+  <input type="hidden" id="montoSeleccionado" name="monto" required />
 
   <form class="formulario" id="formulario">
     <label for="alias">✅ ALIAS:</label>
@@ -156,7 +163,7 @@
     </div>
 
     <div class="wspp">
-      <a href="https://wa.me/5492224513719?text=Hola, adjunto mi comprobante de pago para la carga G5." target="_blank">
+      <a id="whatsappLink" href="#" target="_blank">
         📤 Enviar comprobante por WhatsApp
       </a>
     </div>
@@ -164,10 +171,34 @@
 </div>
 
 <script>
-  document.getElementById('formulario').addEventListener('submit', function(e) {
+  const opciones = document.querySelectorAll(".opcion");
+  const montoInput = document.getElementById("montoSeleccionado");
+  const formulario = document.getElementById("formulario");
+  const resultado = document.getElementById("resultado");
+  const whatsappLink = document.getElementById("whatsappLink");
+
+  opciones.forEach(opcion => {
+    opcion.addEventListener("click", () => {
+      opciones.forEach(o => o.classList.remove("selected"));
+      opcion.classList.add("selected");
+      montoInput.value = opcion.getAttribute("data-value");
+    });
+  });
+
+  formulario.addEventListener("submit", function(e) {
     e.preventDefault();
-    document.getElementById('resultado').style.display = 'block';
+    resultado.style.display = 'block';
     window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+
+    const alias = document.getElementById("alias").value;
+    const nombre = document.getElementById("nombre").value;
+    const dni = document.getElementById("dni").value;
+    const banco = document.getElementById("banco").value;
+    const monto = montoInput.value;
+
+    const mensaje = `Hola, envío mi comprobante de carga:\n\n💸 Monto: ${monto}\n✅ ALIAS: ${alias}\n✅ NOMBRE: ${nombre}\n✅ DNI: ${dni}\n✅ BANCO: ${banco}`;
+    const url = `https://wa.me/5492224513719?text=${encodeURIComponent(mensaje)}`;
+    whatsappLink.href = url;
   });
 </script>
 
