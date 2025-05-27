@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>the import G5</title>
+  <style>
+    body {
+      background: linear-gradient(to right, #e0e0e0, #ffffff);
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+    .container {
+      max-width: 600px;
+      margin: 40px auto;
+      padding: 20px;
+      background: #f9f9f9;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    }
+    h1 {
+      font-size: 3em;
+      text-align: center;
+      color: #222;
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.2);
+      margin-bottom: 20px;
+    }
+    .mensaje {
+      background-color: #fff3cd;
+      padding: 15px;
+      border-left: 6px solid #ffc107;
+      margin-bottom: 20px;
+      border-radius: 6px;
+    }
+    .opciones {
+      margin-bottom: 20px;
+    }
+    .opcion {
+      font-size: 1.1em;
+      background: #fff;
+      padding: 12px;
+      margin: 6px 0;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .opcion:hover {
+      background: #e6f7ff;
+    }
+    .formulario {
+      margin-top: 20px;
+    }
+    label {
+      display: block;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+    input, select {
+      width: 100%;
+      padding: 10px;
+      margin-top: 6px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    button {
+      margin-top: 20px;
+      background: #28a745;
+      color: white;
+      padding: 12px;
+      width: 100%;
+      font-size: 16px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #218838;
+    }
+    .resultado {
+      margin-top: 20px;
+      padding: 15px;
+      background: #d1ecf1;
+      border-left: 6px solid #0c5460;
+      border-radius: 6px;
+      display: none;
+    }
+    .final {
+      margin-top: 15px;
+      text-align: center;
+      font-weight: bold;
+    }
+    .wspp {
+      margin-top: 20px;
+      text-align: center;
+    }
+    .wspp a {
+      background: #25D366;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: bold;
+      display: inline-block;
+    }
+    .wspp a:hover {
+      background: #1ebc59;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h1>the import G5</h1>
+
+  <div class="mensaje">
+    Vas a realizar una carga del sistema a tu cuenta.  
+    <strong>¡Asegúrate de que tus datos sean correctos!</strong>  
+    Para que el sistema cargue correctamente la transferencia a tu cuenta.
+  </div>
+
+  <div class="opciones">
+    <div class="opcion">💸 43.000$ = 250.000$</div>
+    <div class="opcion">💸 55.000$ = 350.000$</div>
+    <div class="opcion">💸 67.000$ = 550.000$</div>
+    <div class="opcion">💸 73.000$ = 650.000$</div>
+    <div class="opcion">💸 85.000$ = 800.000$</div>
+    <div class="opcion">💸 100.000$ = 1.000.000$</div>
+  </div>
+
+  <form class="formulario" id="formulario">
+    <label for="alias">✅ ALIAS:</label>
+    <input type="text" id="alias" name="alias" required />
+
+    <label for="nombre">✅ NOMBRE COMPLETO:</label>
+    <input type="text" id="nombre" name="nombre" required />
+
+    <label for="dni">✅ DNI:</label>
+    <input type="text" id="dni" name="dni" required />
+
+    <label for="banco">✅ Nombre de la APLICACIÓN DE BANCO:</label>
+    <input type="text" id="banco" name="banco" required />
+
+    <button type="submit">Enviar</button>
+  </form>
+
+  <div class="resultado" id="resultado">
+    <p>El sistema de carga de transferencia G5 demora de 5 a 7 minutos.</p>
+    <p><strong>AVISO:</strong> El sistema carga solo una vez impacte el pago.</p>
+
+    <div class="final">
+      Alias: <strong>theimportg55</strong><br/>
+      Nombre: <strong>Iván Gómez</strong>
+    </div>
+
+    <div class="wspp">
+      <a href="https://wa.me/5492224513719?text=Hola, adjunto mi comprobante de pago para la carga G5." target="_blank">
+        📤 Enviar comprobante por WhatsApp
+      </a>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.getElementById('formulario').addEventListener('submit', function(e) {
+    e.preventDefault();
+    document.getElementById('resultado').style.display = 'block';
+    window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+  });
+</script>
+
+</body>
+</html>
